@@ -1,3 +1,4 @@
+import { AccountType } from '@modules/account/domain/models/IAccount';
 import MakeDepositService from '@modules/account/services/MakeDepositService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -11,7 +12,7 @@ export default class AccountController {
     const account = await makeDepositService.execute({
       user_id,
       amount,
-      type: 'deposit',
+      type: AccountType.DEPOSIT,
     });
 
     return response.json(account);

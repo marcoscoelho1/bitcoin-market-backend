@@ -6,3 +6,7 @@ export interface IAccount {
   created_at: Date;
   updated_at: Date;
 }
+export enum AccountType {
+  DEPOSIT = 'deposit',
+  WITHDRAW = 'withdraw',
+}
