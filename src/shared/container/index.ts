@@ -15,6 +15,9 @@ import CheckBalanceService from '@modules/account/services/CheckBalanceService';
 import { ITransfersRepository } from '@modules/market/domain/repositories/ITransfersRepository';
 import TransfersRepository from '@modules/market/infra/typeorm/repositories/TransfersRepository';
 
+import { IBitcoinBalanceService } from '@modules/market/domain/services/IBitcoinBalanceService';
+import BitcoinBalanceService from '@modules/market/services/BitcoinBalanceService';
+
 import '@modules/users/providers';
 import '@shared/providers';
 
@@ -41,4 +44,9 @@ container.registerSingleton<ICheckBalanceService>(
 container.registerSingleton<ITransfersRepository>(
   'TransfersRepository',
   TransfersRepository,
+);
+
+container.registerSingleton<IBitcoinBalanceService>(
+  'BitcoinBalanceService',
+  BitcoinBalanceService,
 );

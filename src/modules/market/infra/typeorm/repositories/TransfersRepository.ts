@@ -30,7 +30,9 @@ export default class TransfersRepository implements ITransfersRepository {
   }
 
   public async findByUserId(userId: number): Promise<ITransfer[]> {
-    const transfers = await this.ormRepository.find({ where: { userId } });
+    const transfers = await this.ormRepository.find({
+      where: { user_id: userId },
+    });
     return transfers;
   }
 }
