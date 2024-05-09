@@ -6,6 +6,7 @@ import PurchaseBitcoinController from '../contollers/PurchaseBitcoinController';
 import { Joi, Segments, celebrate } from 'celebrate';
 import BalanceBitcoinController from '../contollers/BalanceBitcoinController';
 import SellBitcoinController from '../contollers/SellBitcoinController';
+import TransfersController from '../contollers/TransfersController';
 
 const marketRouter = Router();
 
@@ -13,6 +14,7 @@ const bitcoinQuoteController = new BitcoinQuoteController();
 const purchaseBitcoinController = new PurchaseBitcoinController();
 const balanceBitcoinController = new BalanceBitcoinController();
 const sellBitcoinController = new SellBitcoinController();
+const transfersController = new TransfersController();
 
 marketRouter.get(
   '/bitcoin/quote',
@@ -25,6 +27,8 @@ marketRouter.get(
   isAuthenticated,
   balanceBitcoinController.index,
 );
+
+marketRouter.get('/transfers', isAuthenticated, transfersController.index);
 
 marketRouter.post(
   '/bitcoin/purchase',
