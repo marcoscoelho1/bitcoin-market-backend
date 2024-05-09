@@ -3,9 +3,10 @@ import { IAccountRepository } from '../domain/repository/IAccountRepository';
 import { ICheckBalance } from '../domain/models/ICheckBalance';
 import { IBalance } from '../domain/models/IBalance';
 import { AccountType } from '../domain/models/IAccount';
+import { ICheckBalanceService } from '../domain/services/ICheckBalanceService';
 
 @injectable()
-export default class CheckBalanceService {
+export default class CheckBalanceService implements ICheckBalanceService {
   constructor(
     @inject('AccountRepository')
     private accountRepository: IAccountRepository,

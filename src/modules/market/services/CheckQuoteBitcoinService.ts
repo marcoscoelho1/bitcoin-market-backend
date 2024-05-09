@@ -1,11 +1,12 @@
-import { IQuoteBitcoin } from '../domain/IQuoteBitcoin';
+import { IQuoteBitcoin } from '../domain/models/IQuoteBitcoin';
 import AppError from '@shared/errors/AppError';
 import { IHttpProvider } from '@shared/providers/HttpProvider/models/IHttpProvider';
 import { inject, injectable } from 'tsyringe';
-import { IBitcoinMarketResponse } from '../domain/IBitcoinMarketResponse';
+import { IBitcoinMarketResponse } from '../domain/models/IBitcoinMarketResponse';
+import { ICheckBitcoinService } from '../domain/services/ICheckQuoteBitcoinService';
 
 @injectable()
-export default class CheckQuoteBitcoinService {
+export default class CheckQuoteBitcoinService implements ICheckBitcoinService {
   constructor(
     @inject('HttpProvider')
     private httpProvider: IHttpProvider,

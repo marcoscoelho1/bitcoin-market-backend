@@ -1,4 +1,4 @@
-import CheckQuoteBitcoinService from '@modules/market/services/CheckQuoteBitcoin';
+import CheckQuoteBitcoinService from '@modules/market/services/CheckQuoteBitcoinService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
