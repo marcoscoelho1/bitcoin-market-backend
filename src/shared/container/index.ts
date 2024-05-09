@@ -7,6 +7,7 @@ import { IAccountRepository } from '@modules/account/domain/repository/IAccountR
 import AccountRepository from '@modules/account/infra/typeorm/repository/AccountRepository';
 
 import '@modules/users/providers';
+import '@shared/providers';
 
 container.registerSingleton<IUserRepository>(
   'UsersRepository',
