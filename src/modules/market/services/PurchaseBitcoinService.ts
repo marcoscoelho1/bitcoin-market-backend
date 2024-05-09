@@ -8,6 +8,7 @@ import { ICheckBitcoinService } from '../domain/services/ICheckQuoteBitcoinServi
 import { ICheckBalanceService } from '@modules/account/domain/services/ICheckBalanceService';
 import { IAccountRepository } from '@modules/account/domain/repository/IAccountRepository';
 import { AccountType } from '@modules/account/domain/models/IAccount';
+import { ISendEmailService } from '@shared/domain/services/ISendEmailService';
 
 @injectable()
 export default class PurchaseBitcoinService {
@@ -22,15 +23,17 @@ export default class PurchaseBitcoinService {
     private checkBalanceService: ICheckBalanceService,
     @inject('AccountRepository')
     private accountRepository: IAccountRepository,
+    @inject('SendEmailService')
+    private sendEmailService: ISendEmailService,
   ) {}
 
   public async execute({
     userId,
     amount,
   }: IPurchaseBitcoin): Promise<ITransfer> {
-    const userExists = this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(userId);
 
-    if (!userExists) {
+    if (!user) {
       throw new AppError('User does not exists');
     }
 
@@ -59,6 +62,18 @@ export default class PurchaseBitcoinService {
         type: AccountType.WITHDRAW,
       });
     }
+
+    const emaiContact = {
+      name: user.name,
+      email: user.email,
+    };
+    const emailText = `Voce comprou ${bitcoinQuantity} bitcoins com R$ ${amount}`;
+
+    await this.sendEmailService.execute({
+      to: emaiContact,
+      subject: 'Compra de bitcoin',
+      body: emailText,
+    });
 
     return transfer;
   }

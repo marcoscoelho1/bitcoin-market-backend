@@ -18,6 +18,9 @@ import TransfersRepository from '@modules/market/infra/typeorm/repositories/Tran
 import { IBitcoinBalanceService } from '@modules/market/domain/services/IBitcoinBalanceService';
 import BitcoinBalanceService from '@modules/market/services/BitcoinBalanceService';
 
+import { ISendEmailService } from '@shared/domain/services/ISendEmailService';
+import SendEmailService from '@shared/services/SendEmailService';
+
 import '@modules/users/providers';
 import '@shared/providers';
 
@@ -49,4 +52,9 @@ container.registerSingleton<ITransfersRepository>(
 container.registerSingleton<IBitcoinBalanceService>(
   'BitcoinBalanceService',
   BitcoinBalanceService,
+);
+
+container.registerSingleton<ISendEmailService>(
+  'SendEmailService',
+  SendEmailService,
 );
