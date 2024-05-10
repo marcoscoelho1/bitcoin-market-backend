@@ -10,10 +10,12 @@ export default class CreateUserSevice {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUserRepository,
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 
   public async execute({ name, email, password }: ICreateUser): Promise<IUser> {
+    console.log('chegou aqui');
     const emailExists = await this.usersRepository.findByEmail(email);
 
     if (emailExists) {
