@@ -26,7 +26,7 @@ Chegou a hora de explorar o que esta API tem a oferecer! Confira as rotas abaixo
 | Mercado   | Consulta de cotação de bitcoins | GET    | localhost:3333/market/bitcoin/quote    |
 | Conta     | Consulta de saldo da conta      | GET    | localhost:3333/account/balance         |
 | Conta     | Depósito na conta               | POST   | localhost:3333/account/deposit         |
-| Usuários  | Consulta de usuários            | GET    | localhost:3333/users                   |
+| Usuários  | Criação de usuários             | POST   | localhost:3333/users                   |
 | Usuários  | Início de sessão (login)        | POST   | localhost:3333/sessions                |
 
 ## Importe as Rotas no Insomnia
