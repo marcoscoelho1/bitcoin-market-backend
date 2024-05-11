@@ -2,7 +2,6 @@ import { inject, injectable } from 'tsyringe';
 import { IUser } from '../domain/models/IUser';
 import { IUserRepository } from '../domain/repository/IUserRepository';
 import AppError from '@shared/errors/AppError';
-import { hash } from 'bcryptjs';
 import { IHashProvider } from '../providers/HashProvider/models/IHashPovider';
 
 @injectable()
@@ -15,7 +14,6 @@ export default class CreateUserSevice {
   ) {}
 
   public async execute({ name, email, password }: ICreateUser): Promise<IUser> {
-    console.log('chegou aqui');
     const emailExists = await this.usersRepository.findByEmail(email);
 
     if (emailExists) {
